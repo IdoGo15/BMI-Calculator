@@ -5,14 +5,13 @@ let bmi = document.getElementById('final-result');
 let form = document.getElementById('bmi-form');
 let container = document.querySelector('.container');
 
+// Checks if there is already data in local storage
 if(localStorage.getItem('sex') != null){
   console.log('local');
   sex.value = localStorage.getItem('sex');
   height.value = localStorage.getItem('height');
   weight.value = localStorage.getItem('weight');
 }
-
-
 
 // Events
 container.addEventListener('click', saveToLocalStorage);
@@ -55,6 +54,8 @@ function calculateBMI (e) {
 
   // Show Error
   function showError(error) {
+    //Hide results
+    document.getElementById('results').style.display = 'none';
     // Get elements
     const card = document.querySelector('.card');
     const heading = document.querySelector('.heading');
