@@ -27,20 +27,18 @@ form.addEventListener('submit', function(e){
 });
 
 function calculateBMI (e) {
-  // Calculate
-  let heightM = height.value / 100;
-  let final = weight.value / Math.pow(heightM, 2);
-  final = final.toFixed(2);
   // Validation
-  if( final > 0) {
-  //Hide loader
-  document.getElementById('loading').style.display = 'none';
-
-  // Show results
-  document.getElementById('results').style.display = 'block';
-
-  // Initialize results
-  bmi.textContent = final;
+  if(height.value > 0 && weight.value > 0) {
+    // Calculate
+    let heightM = height.value / 100;
+    let final = weight.value / Math.pow(heightM, 2);
+    final = final.toFixed(2);
+     // Initialize results
+    bmi.textContent = final;
+    //Hide loader
+    document.getElementById('loading').style.display = 'none';
+    // Show results
+    document.getElementById('results').style.display = 'block';
   }
 
   else {
@@ -48,7 +46,6 @@ function calculateBMI (e) {
     document.getElementById('loading').style.display = 'none';
     // Error
     showError('Please Enter Valid Height & Weight');
-
   }
 }
 
