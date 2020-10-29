@@ -3,8 +3,20 @@ let height = document.getElementById('height');
 let weight = document.getElementById('weight');
 let bmi = document.getElementById('final-result');
 let form = document.getElementById('bmi-form');
+let container = document.querySelector('.container');
+
+if(localStorage.getItem('sex') != null){
+  console.log('local');
+  sex.value = localStorage.getItem('sex');
+  height.value = localStorage.getItem('height');
+  weight.value = localStorage.getItem('weight');
+}
+
+
 
 // Events
+container.addEventListener('click', saveToLocalStorage);
+
 form.addEventListener('submit', function(e){
 
 //Loader
@@ -60,6 +72,22 @@ function calculateBMI (e) {
   function clearError() {
     document.querySelector('.alert').remove();
   }
+
+
+
+  // Save to local storage
+  function saveToLocalStorage (e) {
+    if (e.target.classList.contains('save')){
+      localStorage.clear();
+      localStorage.setItem('sex', sex.value);
+      localStorage.setItem('height', height.value);
+      localStorage.setItem('weight', weight.value);
+    }
+  }
+
+
+
+
 
 
 
