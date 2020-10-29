@@ -20,8 +20,8 @@ function calculateBMI (e) {
   let heightM = height.value / 100;
   let final = weight.value / Math.pow(heightM, 2);
   final = final.toFixed(2);
-  console.log(final);
-
+  // Validation
+  if( final > 0) {
   //Hide loader
   document.getElementById('loading').style.display = 'none';
 
@@ -30,7 +30,36 @@ function calculateBMI (e) {
 
   // Initialize results
   bmi.textContent = final;
+  }
+
+  else {
+    // Hide Loader
+    document.getElementById('loading').style.display = 'none';
+    // Error
+    showError('Please Enter Valid Height & Weight');
+
+  }
 }
+
+  // Show Error
+  function showError(error) {
+    // Get elements
+    const card = document.querySelector('.card');
+    const heading = document.querySelector('.heading');
+
+    // Creats new Error div
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'alert alert-danger';
+    errorDiv.appendChild(document.createTextNode(error));
+
+    card.insertBefore(errorDiv, heading);
+    
+    setTimeout(clearError, 3000);
+  }
+
+  function clearError() {
+    document.querySelector('.alert').remove();
+  }
 
 
 
