@@ -4,17 +4,16 @@ let weight = document.getElementById('weight');
 let bmi = document.getElementById('final-result');
 let form = document.getElementById('bmi-form');
 let container = document.querySelector('.container');
+let bmiStatus = document.getElementById('bmiStatus');
 
 // Checks if there is already data in local storage
 if(localStorage.getItem('sex') != null){
-  console.log('local');
   sex.value = localStorage.getItem('sex');
   height.value = localStorage.getItem('height');
   weight.value = localStorage.getItem('weight');
 }
 
 // Events
-container.addEventListener('click', saveToLocalStorage);
 
 form.addEventListener('submit', function(e){
 
@@ -35,10 +34,17 @@ function calculateBMI (e) {
     final = final.toFixed(2);
      // Initialize results
     bmi.textContent = final;
+    // Initialize range status
+    if (final < 18.5) { bmiStatus.textContent = 'You are in the underweight range'; }
+    else if (18.5 < final < 25) { bmiStatus.textContent = 'You Are in the healthy weight range'; }
+    else if (25 < final < 29.9) { bmiStatus.textContent = 'You are in the overweight range'; }
+    else if (30 < final) { bmiStatus.textContent = 'You are in the obese range'; }
+
     //Hide loader
     document.getElementById('loading').style.display = 'none';
     // Show results
     document.getElementById('results').style.display = 'block';
+    saveToLocalStorage();
   }
 
   else {
@@ -71,17 +77,17 @@ function calculateBMI (e) {
     document.querySelector('.alert').remove();
   }
 
-
-
   // Save to local storage
-  function saveToLocalStorage (e) {
-    if (e.target.classList.contains('save')){
+  function saveToLocalStorage () {
       localStorage.clear();
       localStorage.setItem('sex', sex.value);
       localStorage.setItem('height', height.value);
       localStorage.setItem('weight', weight.value);
-    }
   }
+
+ 
+
+
 
 
 
