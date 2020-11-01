@@ -36,8 +36,8 @@ function calculateBMI (e) {
     bmi.textContent = final;
     // Initialize range status
     if (final < 18.5) { bmiStatus.textContent = 'You are in the underweight range'; }
-    else if (18.5 < final < 25) { bmiStatus.textContent = 'You Are in the healthy weight range'; }
-    else if (25 < final < 29.9) { bmiStatus.textContent = 'You are in the overweight range'; }
+    else if (18.5 < final && final < 25) { bmiStatus.textContent = 'You are in the healthy weight range';}
+    else if (25 < final && final < 29.9) { bmiStatus.textContent = 'You are in the overweight range';}
     else if (30 < final) { bmiStatus.textContent = 'You are in the obese range'; }
 
     //Hide loader
